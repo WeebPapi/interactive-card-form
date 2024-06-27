@@ -15,3 +15,15 @@
   height: 100%;
   position: relative;
 }
+@media screen and (max-width: 836px) {
+  .app {
+    flex-direction: column;
+    justify-content: space-between;
+    background-image: url("./assets/bg-main-mobile.png");
+    background-size: 100% 35%;
+  }
+  .dispCards {
+    max-width: 343px;
+    max-height: 251px;
+  }
+}

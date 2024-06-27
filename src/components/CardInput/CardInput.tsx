@@ -1,9 +1,11 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import styles from "./CardInput.module.css";
 
 interface CardInputProps {
   value: string | undefined;
   setValue: React.Dispatch<React.SetStateAction<string>> | undefined;
+  blankInputs: number[];
+  setBlankInputs: React.Dispatch<React.SetStateAction<number[]>>;
   cb: (arg0: string) => string;
   limit: number;
 
@@ -24,7 +26,18 @@ const CardInput: FC<CardInputProps> = ({
   placeholder,
   slash,
   submitClicked,
+  blankInputs,
+  setBlankInputs,
 }) => {
+  useEffect(() => {
+    let maximum = limit;
+    if (title === "Cardholder Name") maximum = 8;
+    if (value?.length === 0 && blankInputs.length < 4) {
+      setBlankInputs([...blankInputs, 1]);
+    } else if (value?.length === maximum) {
+      setBlankInputs(blankInputs.slice(1));
+    }
+  }, [value]);
   const [letterEntered, setLetterEntered] = useState(false);
   const [leftBlank, setLeftBlank] = useState(true);
   return (

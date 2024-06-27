@@ -8,10 +8,18 @@ const CardForm: FC = () => {
   const [leftBlank, setLeftBlank] = useState(true);
   const [submitClicked, setSubmitClicked] = useState(false);
   const [fulfilled, setFulfilled] = useState(false);
+  const [blankInputs, setBlankInputs] = useState<number[]>([1, 1, 1, 1]);
 
   useEffect(() => {
+    console.log(blankInputs);
+    if (blankInputs.length) {
+      setLeftBlank(true);
+    } else if (!blankInputs.length) {
+      setLeftBlank(false);
+      setSubmitClicked(false);
+    }
     if (!leftBlank && submitClicked) setFulfilled(true);
-  });
+  }, [blankInputs, submitClicked]);
 
   const handleClick = () => {
     setSubmitClicked(true);
@@ -29,6 +37,8 @@ const CardForm: FC = () => {
           lettersAllowed={true}
           slash={false}
           submitClicked={submitClicked}
+          blankInputs={blankInputs}
+          setBlankInputs={setBlankInputs}
         />
         <CardInput
           title="Card Number"
@@ -43,6 +53,8 @@ const CardForm: FC = () => {
           lettersAllowed={false}
           slash={false}
           submitClicked={submitClicked}
+          blankInputs={blankInputs}
+          setBlankInputs={setBlankInputs}
         />
       </div>
       <div className={styles.smallInputs}>
@@ -61,7 +73,9 @@ const CardForm: FC = () => {
           limit={5}
           lettersAllowed={false}
           slash={true}
+          blankInputs={blankInputs}
           submitClicked={submitClicked}
+          setBlankInputs={setBlankInputs}
         />
         <CardInput
           title="CVC"
@@ -73,6 +87,8 @@ const CardForm: FC = () => {
           lettersAllowed={false}
           slash={false}
           submitClicked={submitClicked}
+          blankInputs={blankInputs}
+          setBlankInputs={setBlankInputs}
         />
       </div>
       <button onClick={handleClick} type="button" className={styles.button}>

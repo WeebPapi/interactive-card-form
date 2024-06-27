@@ -20,6 +20,7 @@
   max-width: 391px;
   width: 100%;
   justify-content: space-between;
+  align-items: center;
 }
 .smallInputs > * {
   max-width: 150px;
@@ -34,4 +35,19 @@
   color: white;
   font-size: 18px;
   cursor: pointer;
+}
+@media screen and (max-width: 404px) {
+  .cardForm {
+    max-width: 370px;
+  }
+  .bigInputs,
+  .smallInputs {
+    max-width: 320px;
+  }
+  .smallInputs > * {
+    max-width: 100px;
+  }
+  .button {
+    max-width: 320px;
+  }
 }

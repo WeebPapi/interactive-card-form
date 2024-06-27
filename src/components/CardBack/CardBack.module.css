@@ -6,16 +6,51 @@
   height: 100%;
   border-radius: 10px;
   box-sizing: border-box;
+  background-size: 100% 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
   position: absolute;
-  top: 70%;
+  top: 55%;
   right: 50%;
+  box-shadow: 20px 24px 17px -4px rgba(0, 0, 0, 0.1);
 }
 .cardBack p {
   color: white;
   font-size: 14px;
   width: 80px;
+}
+@media screen and (max-width: 1280px) {
+  .cardBack {
+    right: 30%;
+    max-width: 387px;
+    max-height: 230px;
+  }
+  .cardBack p {
+    margin: 0;
+  }
+}
+@media screen and (max-width: 1080px) {
+  .cardBack {
+    right: 20%;
+  }
+}
+@media screen and (max-width: 900px) {
+  .cardBack {
+    right: 8%;
+  }
+}
+@media screen and (max-width: 836px) {
+  .cardBack {
+    right: 0%;
+    top: 10%;
+    max-width: 285px;
+    max-height: 157px;
+  }
+}
+@media screen and (max-width: 404px) {
+  .cardBack {
+    left: 2%;
+  }
 }

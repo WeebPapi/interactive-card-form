@@ -1,0 +1,24 @@
+.thankyou {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 381px;
+  width: 100%;
+}
+.button {
+  border: none;
+  margin-top: 2rem;
+  border-radius: 10px;
+  height: 50px;
+  width: 100%;
+  background-color: rgba(33, 9, 47, 1);
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+a {
+  margin: 0;
+  width: 100%;
+}

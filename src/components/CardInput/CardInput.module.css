@@ -6,6 +6,7 @@
   height: 45px;
   font-size: 18px;
   border: 1px solid rgba(223, 222, 224, 1);
+  padding: 0 5px;
 }
 .cardInput > input:focus {
   outline: none;
@@ -19,5 +20,6 @@
 .title {
   margin: 0.2rem 0;
   color: rgba(33, 9, 47, 1);
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: 700;
 }
