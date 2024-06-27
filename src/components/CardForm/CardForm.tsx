@@ -1,12 +1,22 @@
-import { FC, useContext, useState } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import styles from "./CardForm.module.css";
-import { CardInput } from "../";
+import { CardInput, ThankYou } from "../";
 import { DataContext } from "../../App";
 
 const CardForm: FC = () => {
   const currentContext = useContext(DataContext);
-  const [leftBlank, setLeftBlank] = useState(false);
-  return (
+  const [leftBlank, setLeftBlank] = useState(true);
+  const [submitClicked, setSubmitClicked] = useState(false);
+  const [fulfilled, setFulfilled] = useState(false);
+
+  useEffect(() => {
+    if (!leftBlank && submitClicked) setFulfilled(true);
+  });
+
+  const handleClick = () => {
+    setSubmitClicked(true);
+  };
+  return !fulfilled ? (
     <div className={styles.cardForm}>
       <div className={styles.bigInputs}>
         <CardInput
@@ -16,10 +26,9 @@ const CardForm: FC = () => {
           setValue={currentContext?.setName}
           cb={(arg) => arg}
           limit={28}
-          leftBlank={leftBlank}
-          setLeftBlank={setLeftBlank}
           lettersAllowed={true}
           slash={false}
+          submitClicked={submitClicked}
         />
         <CardInput
           title="Card Number"
@@ -31,10 +40,9 @@ const CardForm: FC = () => {
             return value.match(/.{1,4}/g)?.join(" ") || value;
           }}
           limit={19}
-          leftBlank={leftBlank}
-          setLeftBlank={setLeftBlank}
           lettersAllowed={false}
           slash={false}
+          submitClicked={submitClicked}
         />
       </div>
       <div className={styles.smallInputs}>
@@ -51,10 +59,9 @@ const CardForm: FC = () => {
             return value;
           }}
           limit={5}
-          leftBlank={leftBlank}
-          setLeftBlank={setLeftBlank}
           lettersAllowed={false}
           slash={true}
+          submitClicked={submitClicked}
         />
         <CardInput
           title="CVC"
@@ -63,13 +70,17 @@ const CardForm: FC = () => {
           setValue={currentContext?.setCvc}
           cb={(arg) => arg}
           limit={3}
-          leftBlank={leftBlank}
-          setLeftBlank={setLeftBlank}
           lettersAllowed={false}
           slash={false}
+          submitClicked={submitClicked}
         />
       </div>
+      <button onClick={handleClick} type="button" className={styles.button}>
+        Confirm
+      </button>
     </div>
+  ) : (
+    <ThankYou />
   );
 };
 

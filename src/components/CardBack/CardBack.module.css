@@ -11,8 +11,8 @@
   justify-content: center;
   align-items: flex-end;
   position: absolute;
-  top: 55%;
-  left: 15%;
+  top: 70%;
+  right: 50%;
 }
 .cardBack p {
   color: white;

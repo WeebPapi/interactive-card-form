@@ -10,8 +10,8 @@
   flex-direction: column;
   justify-content: space-evenly;
   position: absolute;
-  top: 25%;
-  right: 60%;
+  top: 10%;
+  right: 70%;
 }
 .logo {
   padding: 0 0 0 1.5rem;

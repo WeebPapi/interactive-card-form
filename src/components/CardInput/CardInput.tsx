@@ -6,12 +6,12 @@ interface CardInputProps {
   setValue: React.Dispatch<React.SetStateAction<string>> | undefined;
   cb: (arg0: string) => string;
   limit: number;
-  leftBlank: boolean;
-  setLeftBlank: React.Dispatch<React.SetStateAction<boolean>>;
+
   lettersAllowed: boolean;
   placeholder: string;
   title: string;
   slash: boolean;
+  submitClicked: boolean;
 }
 
 const CardInput: FC<CardInputProps> = ({
@@ -23,8 +23,10 @@ const CardInput: FC<CardInputProps> = ({
   title,
   placeholder,
   slash,
+  submitClicked,
 }) => {
   const [letterEntered, setLetterEntered] = useState(false);
+  const [leftBlank, setLeftBlank] = useState(true);
   return (
     <div className={styles.cardInput}>
       <p className={styles.title}>{title}</p>
@@ -35,6 +37,11 @@ const CardInput: FC<CardInputProps> = ({
         value={cb(value ? value : "")}
         onChange={(e) => {
           let value = e.target.value;
+          if (!(value === "")) {
+            setLeftBlank(false);
+          } else {
+            setLeftBlank(true);
+          }
           const regex = slash ? /[^\d\/\s]/ : /[^\d\s]/;
           const containsInvalidChars = regex.test(value);
           setLetterEntered(!lettersAllowed && containsInvalidChars);
@@ -44,6 +51,9 @@ const CardInput: FC<CardInputProps> = ({
       />
       {letterEntered ? (
         <p className={styles.error}>Please Only Enter Numbers</p>
+      ) : null}
+      {submitClicked && leftBlank ? (
+        <p className={styles.error}>Cannot Be Blank</p>
       ) : null}
     </div>
   );
